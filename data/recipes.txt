@@ -1,0 +1,1196 @@
+# Copper Alloy Ingot
+@ Foundry
+< 100.0000 Copper Ingot
+>  50.0000 Copper Ore
+>  25.0000 Iron Ore
+
+# Iron Alloy Ingot
+@ Foundry
+<  50.0000 Iron Ingot
+>  20.0000 Iron Ore
+>  20.0000 Copper Ore
+
+# Bolted Iron Plate
+@ Assembler
+<  15.0000 Reinforced Iron Plate
+>  90.0000 Iron Plate
+> 250.0000 Screw
+
+# Stitched Iron Plate
+@ Assembler
+<   5.6000 Reinforced Icon Plate
+>  18.7500 Iron Plate
+>  37.5000 Wire
+
+# Cast Screw
+@ Constructor
+<  50.0000 Screw
+>  12.5000 Iron Ingot
+
+# Iron Wire
+@ Constructor
+<  22.5000 Wire
+>  12.5000 Iron Ingot
+
+# Fine Black Powder
+@ Assembler
+<  15.0000 Black Powder
+>   7.5000 Sulfer
+>   3.7500 Compacted Coal
+
+# Radio Connection Unit
+@ Manufacturer
+<   3.7500 Radio Control Unit
+>  15.0000 Heat Sink
+>   7.5000 High-Speed Connector
+>  45.0000 Quartz Crystal
+
+# Caterium Wire
+@ Constructor
+< 120.0000 Wire
+>  15.0000 Caterium Ingot
+
+# Fused Wire
+@ Assembler
+<  90.0000 Wire
+>  12.0000 Copper Ingot
+>   3.0000 Caterium Ingot
+
+# Fused Quickwire
+@ Assembler
+<  90.0000 Quickwire
+>   7.5000 Caterium Ingot
+>  37.5000 Copper Ingot
+
+# Fine Concrete
+@ Assembler
+<  25.0000 Concrete
+>   7.5000 Silica
+>  30.0000 Limestone
+
+# Cheap Silica
+@ Assembler
+<  26.2500 Silica
+>  11.2500 Raw Quartz
+>  18.7500 Limestone
+
+# Seismic Nobelisk
+@ Manufacturer
+<   6.0000 Nobelisk
+>  12.0000 Black Powder
+>  12.0000 Steel Pipe
+>   1.5000 Crystal Oscillator
+
+# Bolted Frame
+@ Assembler
+<   5.0000 Modular Frame
+>   7.5000 Reinforced Iron Plate
+> 140.0000 Screw
+
+# Copper Rotor
+@ Assembler
+<  11.2500 Rotor
+>  22.5000 Copper Sheet
+> 195.0000 Screw
+
+# Steel Rod
+@ Constructor
+<  48.0000 Iron Rod
+>  12.0000 Steel Ingot
+
+# Steeled Frame
+@ Assembler
+<   3.0000 Modular Frame
+>   2.0000 Reinforced Iron Plate
+>  10.0000 Steel Pipe
+
+# Steel Rotor
+@ Assembler
+<   5.0000 Rotor
+>  10.0000 Steel Pipe
+>  30.0000 Wire
+
+# Steel Screw
+@ Constructor
+< 260.0000 Screw
+>   5.0000 Steal Beam
+
+# Solid Steel Ingot
+@ Foundry
+<  60.0000 Steel Ingot
+>  40.0000 Iron Ingot
+>  40.0000 Coal
+
+# Compacted Steel Ingot
+@ Foundry
+<  37.5000 Steel Ingot
+>  22.5000 Iron Ore
+>  11.2500 Compacted Coal
+
+# Biocoal
+@ Constructor
+<  45.0000 Coal
+>  37.5000 Biomass
+
+# Charcoal
+@ Constructor
+< 150.0000 Coal
+>  15.0000 Wood
+
+# Wet Concrete
+@ Refinery
+<  80.0000 Concrete
+> 120.0000 Limestone
+> 100.0000 Water
+
+# Pure Copper Ingot
+@ Refinery
+<  37.5000 Copper Ingot
+>  15.0000 Copper Ore
+>  10.0000 Water
+
+# Steamed Copper Sheet
+@ Refinery
+<  22.5000 Copper Sheet
+>  22.5000 Copper Ingot
+>  22.5000 Water
+
+# Pure Iron Ingot
+@ Refinery
+<  65.0000 Iron Ingot
+>  35.0000 Iron Ore
+>  20.0000 Water
+
+# Pure Caterium Ingot
+@ Refinery
+<  12.0000 Caterium Ingot
+>  24.0000 Caterium Ore
+>  24.0000 Water
+
+# Pure Quartz Crystal
+@ Refinery
+<  52.5000 Quartz Crystal
+>  67.5000 Raw Quartz
+>  37.5000 Water
+
+# Encased Industrial Pipe
+@ Assembler
+<   4.0000 Industrial Pipe
+>  28.0000 Steel Pipe
+>  20.0000 Concrete
+
+# Automated Speed Wiring
+@ Manufacturer
+<   7.5000 Automated Wiring
+>   3.7500 Stator
+>  75.0000 Wire
+>   1.8750 High-Speed Connector
+
+# Quickwire Stator
+@ Assembler
+<   8.0000 Stator
+>  16.0000 Steel Pipe
+>  60.0000 Quickwire
+
+# Rigour Motor
+@ Manufacturer
+<   7.5000 Motor
+>   3.7500 Rotor
+>   3.7500 Stator
+>   1.2500 Crystal Oscillator
+
+# Coated Iron Canister
+@ Assembler
+<  60.0000 Empty Canister
+>  30.0000 Iron Plate
+>  15.0000 Copper Sheet
+
+# Steel Canister
+@ Constructor
+<  40.0000 Empty Canister
+>  60.0000 Steel Ingot
+
+# Heavy Encased Frame
+@ Manufacturer
+<   2.8125 Heavy Modular Frame
+>   7.5000 Modular Frame
+>   9.3750 Encased Industrial Beam
+>  33.7500 Steel Pipe
+>  20.6250 Concrete
+
+# Heavy Flexible Frame
+@ Manufacturer
+<   3.7500 Heavy Modular Frame
+>  18.7500 Modular Frame
+>  11.2500 Encased Industrial Beam
+>  75.0000 Rubber
+> 390.0000 Screw
+
+# Automated Miner
+@ Manufacturer
+<   1.0000 Miner
+>   1.0000 Motor
+>   4.0000 Steel Pipe
+>   4.0000 Iron Rod
+>   2.0000 Iron Plate
+
+# Caterium Computer
+@ Manufacturer
+<   3.7500 Computer
+>  26.2500 Circuit Board
+> 105.0000 Quickwire
+>  45.0000 Rubber
+
+# Crystal Computer
+@ Assembler
+<   2.8125 Computer
+>   7.5000 Circuit Board
+>   2.8125 Crystal Oscillator
+
+# Coated Cable
+@ Refinery
+<  67.5000 Cable
+>  37.5000 Wire
+>  15.0000 Heavy Oil Residue
+
+# Insulated Cable
+@ Assembler
+< 100.0000 Cable
+>  45.0000 Wire
+>  30.0000 Rubber
+
+# Electrode Circuit Board
+@ Assembler
+<   5.0000 Circuit Board
+>  30.0000 Rubber
+>  45.0000 Petroleum Coke
+
+# Rubber Concrete
+@ Assembler
+<  45.0000 Concrete
+>  50.0000 Limestone
+>  10.0000 Rubber
+
+# Heavy Oil Residue
+@ Refinery
+<  40.0000 Heavy Oil Residue
+<  20.0000 Polymer Resin
+>  30.0000 Crude Oil
+
+# Coated Iron Plate
+@ Assembler
+<  75.0000 Iron Plate
+>  50.0000 Iron Ingot
+>  10.0000 Plastic
+
+# Steel Coated Plate
+@ Assembler
+<  45.0000 Iron Plate
+>   7.5000 Steel Ingot
+>   5.0000 Plastic
+
+# Diluted Packaged Fuel
+@ Refinery
+<  60.0000 Packaged Fuel
+>  30.0000 Heavy Oil Residue
+>  60.0000 Packaged Water
+
+# Recycled Plastic
+@ Refinery
+<  60.0000 Plastic
+>  30.0000 Rubber
+>  30.0000 Fuel
+
+# Polymer Resin
+@ Refinery
+< 130.0000 Polymer Resin
+<  20.0000 Heavy Oil Residue
+>  60.0000 Crude Oil
+
+# Adhered Iron Plate
+@ Assembler
+<   3.7500 Reinforced Iron Plate
+>  11.2500 Iron Plate
+>   3.7500 Rubber
+
+# Recycled Rubber
+@ Refinery
+<  60.0000 Rubber
+>  30.0000 Plastic
+>  30.0000 Fuel
+
+# Plastic Smart Plating
+@ Manufacturer
+<   5.0000 Smart Plating
+>   2.5000 Reinforced Iron Plate
+>   2.5000 Rotor
+>   7.5000 Plastic
+
+# Coke Steel Ingot
+@ Foundry
+< 100.0000 Steel Ingot
+>  75.0000 Iron Ore
+>  75.0000 Petroleum Coke
+
+# Flexible Framework
+@ Manufacturer
+<   7.5000 Versatile Framework
+>   3.7500 Modular Frame
+>  22.5000 Steel Beam
+>  30.0000 Rubber
+
+# Quickwire Cable
+@ Assembler
+<  27.5000 Cable
+>   7.5000 Quickwire
+>   5.0000 Rubber
+
+# Caterium Circuit Board
+@ Assembler
+<   8.7500 Circuit Board
+>  12.5000 Plastic
+>  37.5000 Quickwire
+
+# Silicon High-Speed Connector
+@ Manufacturer
+<   3.0000 High-Speed Connector
+>  90.0000 Quickwire
+>  37.5000 Silica
+>   3.0000 Circuit Board
+
+# Insulated Crystal Oscillator
+@ Manufacturer
+<   1.8750 Crystal Oscillator
+>  18.7500 Quartz Crystal
+>  13.1250 Rubber
+>   1.8750 AI Limiter
+
+# Silicon Circuit Board
+@ Assembler
+<  12.5000 Circuit Board
+>  27.5000 Copper Sheet
+>  27.5000 Silica
+
+# Turbo Heavy Fuel
+@ Refinery
+<  30.0000 Turbofuel
+>  37.5000 Heacy Oil Residue
+>  30.0000 Compacted Coal
+
+# Classic Battery
+@ Manufacturer
+<  30.0000 Battery
+>  45.0000 Sulfer
+>  52.5000 Alclad Aluminum Sheet
+>  60.0000 Plastic
+>  90.0000 Wire
+
+# Electric Motor
+@ Assembler
+<   7.5000 Motor
+>   3.7500 Electromagnetic Control Rod
+>   7.5000 Rotor
+
+# OC Supercomputer
+@ Assembler
+<   3.0000 Supercomputer
+>   9.0000 Radio Control Unit
+>   9.0000 Cooling System
+
+# Super-State Computer
+@ Manufacturer
+<   2.4000 Supercomputer
+>   3.6000 Computer
+>   2.4000 Electromagnetic Control Rod
+>  24.0000 Battery
+>  54.0000 Wire
+
+# Sloppy Alumina
+@ Refinery
+< 240.0000 Alumina Solution
+> 200.0000 Bauxite
+> 200.0000 Water
+
+# Alclad Casing
+@ Assembler
+< 112.5000 Aluminum Casing
+> 150.0000 Aluminum Ingot
+>  75.0000 Copper Ingot
+
+# Pure Aluminum Ingot
+@ Smelter
+<  30.0000 Aluminum Ingot
+>  60.0000 Aluminum Scrap
+
+# Electrode - Aluminum Scrap
+@ Refinery
+< 300.0000 Aluminum Scrap
+> 180.0000 Alumina Solution
+>  60.0000 Petroleum Coke
+
+# Diluted Fuel
+@ Blender
+< 100.0000 Fuel
+>  50.0000 Heavy Oil Residue
+> 100.0000 Water
+
+# Radio Control System
+@ Manufacturer
+<   4.5000 Radio Control Unit
+>   1.5000 Crystal Oscillator
+>  15.0000 Circuit Board
+>  90.0000 Aluminum Casing
+>  45.0000 Rubber
+
+# Instant Scrap
+@ Blender
+< 300.0000 Aluminum Scrap
+<  50.0000 Water
+> 150.0000 Bauxite
+> 100.0000 Coal
+>  50.0000 Sulfuric Acid
+>  60.0000 Water
+
+# Turbo Blend Fuel
+@ Blender
+<  45.0000 Turbofuel
+>  15.0000 Fuel
+>  30.0000 Heavy Oil Residue
+>  22.5000 Sulfur
+>  22.5000 Petroleum Coke
+
+# Cooling Device
+@ Blender
+<   3.7500 Cooling System
+>   9.3750 Heat Sink
+>   1.8750 Motor
+>  45.0000 Nitrogen Gas
+
+# Heat Exchanger
+@ Assembler
+<  10.0000 Heat Sink
+>  30.0000 Aluminum Casing
+>  30.0000 Rubber
+
+# Turbo Electric Motor
+@ Manufacturer
+<   2.8125 Turbo Motor
+>   6.5625 Motor
+>   8.4375 Radio Control Unit
+>   4.6875 Electromagnetic Control Rod
+>   6.5625 Rotor
+
+# Electromagnetic Connection Rod
+@ Assembler
+<   8.0000 Electromagnetic Control Rod
+>   8.0000 Stator
+>   4.0000 High-Speed Connector
+
+# Infused Uranium Cell
+@ Manufacturer
+<  20.0000 Encased Uranium Cell
+>  25.0000 Uranium
+>  15.0000 Silica
+>  25.0000 Sulfur
+>  75.0000 Quickwire
+
+# Uranium Fuel Unit
+@ Manufacturer
+<   0.6000 Uranium Fuel Rod
+>  20.0000 Encased Uranium Cell
+>   2.0000 Electromagnetic Control Rod
+>   0.6000 Crystal Oscillator
+>   1.2000 Beacon
+
+# Instant Plutonium Cell
+@ Particle Accelerator
+<  10.0000 Encased Plutonium Cell
+>  75.0000 Non-fissile Uranium
+>  10.0000 Aluminum Casing
+
+# Heat-Fused Frame
+@ Blender
+<   3.0000 Fused Module Frame
+>   3.0000 Heavy Modular Frame
+> 150.0000 Aluminum Ingot
+>  24.0000 Nitric Acid
+>  30.0000 Fuel
+
+# Fertile Uranium
+@ Blender
+< 100.0000 Non-fissile Uranium
+<  40.0000 Water
+>  25.0000 Uranium
+>  25.0000 Uranium Waste
+>  15.0000 Nitric Acid
+>  25.0000 Sulfuric Acid
+
+# Plutonium Fuel Unit
+@ Assembler
+<   0.5000 Plutonium Fuel Rod
+>  10.0000 Encased Plutonium Cell
+>   0.5000 Pressure Conversion Cube
+
+# Turbo Pressure Motor
+@ Manufacturer
+<   3.7500 Turbo Motor
+>   7.5000 Motor
+>   1.8750 Pressure Conversion Cube
+>  45.0000 Packaged Nitrogen Gas
+>  15.0000 Stator
+
+# Polyester Fabric
+@ Refinery
+<   5.0000 Fabric
+>  80.0000 Polymer Resin
+>  50.0000 Water
+
+# Compacted Coal
+@ Assembler
+<  25.0000 Compacted Coal
+>  25.0000 Coal
+>  25.0000 Sulfur
+
+# AI Limiter
+@ Assembler
+<   5.0000 AI Limiter
+>  25.0000 Copper Sheet
+> 100.0000 Quickwire
+
+# Circuit Board
+@ Assembler
+<   7.5000 Circuit Board
+>  15.0000 Copper Sheet
+>  30.0000 Plastic
+
+# Electromagnetic Control Rod
+@ Assembler
+<   4.0000 Electromagnetic Control Rod
+>   6.0000 Stator
+>   4.0000 AI Limiter
+
+# Encased Industrial Beam
+@ Assembler
+<   6.0000 Encased Industrial Beam
+>  24.0000 Steel Beam
+>  30.0000 Concrete
+
+# Fabric
+@ Assembler
+<  15.0000 Fabric
+>  15.0000 Mycelia
+>  15.0000 Biomass
+
+# Black Powder
+@ Assembler
+<   7.5000 Black Powder
+>   7.5000 Coal
+>  15.0000 Sulfur
+
+# Heat Sink
+@ Assembler
+<   7.5000 Heat Sink
+>  37.5000 Alclad Aluminum Sheet
+>  22.5000 Copper Sheet
+
+# Reinforced Iron Plate
+@ Assembler
+<   5.0000 Reinforced Iron Plate
+>  30.0000 Steel
+>  60.0000 Screw
+
+# Modular Frame
+@ Assembler
+<   2.0000 Modular Frame
+>   3.0000 Reinforced Iron Plate
+>  12.0000 Iron Rod
+
+# Motor
+@ Assembler
+<   5.0000 Motor
+>  10.0000 Rotor
+>  10.0000 Stator
+
+# Nobelisk
+@ Assembler
+<   3.0000 Nobelisk
+>  15.0000 Black Powder
+>  30.0000 Steel Pipe
+
+# Encased Plutonium Cell
+@ Assembler
+<   5.0000 Encased Plutonium Cell
+>  10.0000 Plutonium Pellet
+>  20.0000 Concrete
+
+# Pressure Conversion Cube
+@ Assembler
+<   1.0000 Pressure Conversion Cube
+>   1.0000 Fused Modular Frame
+>   2.0000 Radio Control Unit
+
+# Rotor
+@ Assembler
+<   4.0000 Rotor
+>  30.0000 Iron Rod
+> 100.0000 Screw
+
+# Smart Plating
+@ Assembler
+<   2.0000 Smart Plating
+>   2.0000 Rotor
+>   2.0000 Reinforced Iron Plate
+
+# Versatile Framework
+@ Assembler
+<   5.0000 Versatile Framework
+>   2.5000 Modular Frame
+>  30.0000 Steel Beam
+
+# Automated Wiring
+@ Assembler
+<   2.5000 Automated Wiring
+>   2.5000 Stator
+>  50.0000 Cable
+
+# Assembly Director System
+@ Assembler
+<   0.7500 Assembly Director System
+>   0.7500 Supercomputer
+>   1.5000 Adaptive Control Unit
+
+# Stator
+@ Assembler
+<   5.0000 Stator
+>  15.0000 Steel Pipe
+>  40.0000 Wire
+
+# Battery
+@ Blender
+<  20.0000 Battery
+<  30.0000 Water
+>  50.0000 Sulfuric Acid
+>  40.0000 Alumina Solution
+>  20.0000 Aluminum Casing
+
+# Cooling System
+@ Blender
+<   6.0000 Cooling System
+>  12.0000 Heat Sink
+>  12.0000 Rubber
+>  30.0000 Water
+> 150.0000 Nitrogen Gas
+
+# Fused Modular Frame
+@ Blender
+<   1.5000 Fused Modular Frame
+>   1.5000 Heavy Modular Frame
+>  75.0000 Aluminum Casing
+>  37.5000 Nitrogen Gas
+
+# Nitric Acid
+@ Blender
+<  30.0000 Nitric Acid
+> 120.0000 Nitrogen Gas
+>  30.0000 Water
+>  10.0000 Iron Plate
+
+# Non-fissile Uranium
+@ Blender
+<  50.0000 Non-fissile Uranium
+<  15.0000 Water
+>  37.5000 Uranium Waste
+>  25.0000 Silica
+>  15.0000 Nitric Acid
+>  15.0000 Sulfuric Acid
+
+# Encased Uranium Cell
+@ Blender
+<  25.0000 Encased Uranium Cell
+<  10.0000 Sulfuric Acid
+>  50.0000 Uranium
+>  15.0000 Concrete
+>  40.0000 Sulfuric Acid
+
+# Aluminum Casing
+@ Constructor
+<  60.0000 Aluminum Casing
+>  90.0000 Aluminum Ingot
+
+# Solid Biofuel
+@ Constructor
+<  60.0000 Solid Biofuel
+> 120.0000 Biomass
+
+# Biomass (Alien Carapace)
+@ Constructor
+< 1500.0000 Biomass
+>  15.0000 Alien Carapace
+
+# Biomass (Alien Organs)
+@ Constructor
+< 1500.0000 Biomass
+>   7.5000 Alien Organs
+
+# Biomass (Leaves)
+@ Constructor
+<  60.0000 Biomass
+> 120.0000 Leaves
+
+# Biomass (Mycelia)
+@ Constructor
+< 150.0000 Biomass
+> 150.0000 Mycelia
+
+# Biomass (Wood)
+@ Constructor
+< 200.0000 Biomass
+>  60.0000 Wood
+
+# Cable
+@ Constructor
+<  30.0000 Cable
+>  60.0000 Wire
+
+# Color Cartridge
+@ Constructor
+<  75.0000 Color Cartridge
+>  37.5000 Flower Petals
+
+# Concrete
+@ Constructor
+<  15.0000 Concrete
+>  45.0000 Limestone
+
+# Copper Powder
+@ Constructor
+<  50.0000 Copper Powder
+> 300.0000 Copper Ingot
+
+# Copper Sheet
+@ Constructor
+<  10.0000 Copper Sheet
+>  20.0000 Copper Ingot
+
+# Empty Canister
+@ Constructor
+<  60.0000 Empty Canister
+>  30.0000 Plastic
+
+# Empty Fluid Tank
+@ Constructor
+<  60.0000 Empty Fluid Tank
+>  60.0000 Aluminum Ingot
+
+# Iron Plate
+@ Constructor
+<  20.0000 Iron Plate
+>  30.0000 Iron Ingot
+
+# Iron Rod
+@ Constructor
+<  15.0000 Iron Rod
+>  15.0000 Iron Ingot
+
+# Power Shard (1)
+@ Constructor
+<   7.5000 Power Shard
+>   7.5000 Blue Power Slug
+
+# Power Shard (2)
+@ Constructor
+<  10.0000 Power Shard
+>   5.0000 Yellow Power Slug
+
+# Power Shard (5)
+@ Constructor
+<  12.5000 Power Shard
+>   2.5000 Purple Power Slug
+
+# Quartz Crystal
+@ Constructor
+<  22.5000 Quartz Crystal
+>  37.5000 Raw Quartz
+
+# Quickwire
+@ Constructor
+<  60.0000 Quickwire
+>  12.0000 Caterium Ingot
+
+# Screw
+@ Constructor
+<  40.0000 Screw
+>  10.0000 Iron Rod
+
+# Silica
+@ Constructor
+<  37.5000 Silica
+>  22.5000 Raw Quartz
+
+# Spiked Rebar
+@ Constructor
+<  15.0000 Spiked Rebar
+>  15.0000 Iron Rod
+
+# Steel Beam
+@ Constructor
+<  15.0000 Steel Beam
+>  60.0000 Steel Ingot
+
+# Steel Pipe
+@ Constructor
+<  20.0000 Steel Pipe
+>  30.0000 Steel Ingot
+
+# Wire
+@ Constructor
+<  30.0000 Wire
+>  15.0000 Copper Ingot
+
+# Supercomputer
+@ Manufacturer
+<   1.8750 Supercomputer
+>   3.7500 Computer
+>   3.7500 AI Limiter
+>   5.6250 High-Speed Connector
+>  52.5000 Plastic
+
+# Computer
+@ Manufacturer
+<   2.5000 Computer
+>  25.0000 Circuit Board
+>  22.5000 Cable
+>  45.0000 Plastic
+> 130.0000 Screw
+
+# Crystal Oscillator
+@ Manufacturer
+<   1.0000 Crystal Oscillator
+>  18.0000 Quartz Crystal
+>  14.0000 Cable
+>   2.5000 Reinforced Iron Plate
+
+# Gas Filter
+@ Manufacturer
+<   7.5000 Gas Filter
+>  37.5000 Coal
+>  15.0000 Rubber
+>  15.0000 Fabric
+
+# Iodine Infused Filter
+@ Manufacturer
+<   3.7500 Iodine Infused Filter
+>   3.7500 Gas Filter
+>  30.0000 Quickwire
+>   3.7500 Aluminum Casing
+
+# High-Speed Connector
+@ Manufacturer
+<   3.7500 High-Speed Connector
+> 210.0000 Quickwire
+>  37.5000 Cable
+>   3.7500 Circuit Board
+
+# Heavy Modular Frame
+@ Manufacturer
+<   2.0000 Heavy Modular Frame
+>  10.0000 Modular Frame
+>  30.0000 Steel Pipe
+>  10.0000 Encased Industrial Beam
+> 200.0000 Screw
+
+# Turbo Motor
+@ Manufacturer
+<   1.8750 Turbo Motor
+>   7.5000 Cooling System
+>   3.7500 Radio Control Unit
+>   7.5000 Motor
+>  45.0000 Rubber
+
+# Uranium Fuel Rod
+@ Manufacturer
+<   0.4000 Uranium Fuel Rod
+>  20.0000 Encased Uranium Cell
+>   1.2000 Encased Industrial Beam
+>   2.0000 Electromagnetic Control Rod
+
+# Plutonium Fuel Rod
+@ Manufacturer
+<   0.2500 Plutonium Fuel Rod
+>   7.5000 Encased Plutonium Cell
+>   4.5000 Steel Beam
+>   1.5000 Electromagnetic Control Rod
+>   2.5000 Heat Sink
+
+# Radio Control Unit
+@ Manufacturer
+<   2.5000 Radio Control Unit
+>  40.0000 Aluminum Casing
+>   1.2500 Crystal Oscillator
+>   1.2500 Computer
+
+# Modular Engine
+@ Manufacturer
+<   1.0000 Modular Engine
+>   2.0000 Motor
+>  15.0000 Rubber
+>   2.0000 Smart Plating
+
+# Adaptive Control Unit
+@ Manufacturer
+<   1.0000 Adaptive Control Unit
+>   7.5000 Automated Wiring
+>   5.0000 Circuit Board
+>   1.0000 Heavy Modular Frame
+>   1.0000 Computer
+
+# Magnetic Field Generator
+@ Manufacturer
+<   1.0000 Magnetic Field Generator
+>   5.0000 Battery
+>   1.0000 Electromagnetic Control Rod
+>   2.5000 Versatile Framework
+
+# Thermal Propulsion Rocket
+@ Manufacturer
+<   1.0000 Thermal Propulsion Rocket
+>   2.5000 Modular Engine
+>   1.0000 Turbo Motor
+>   3.0000 Cooling System
+>   1.0000 Fused Modular Frame
+
+# Packaged Fuel
+@ Packager
+<  40.0000 Packaged Fuel
+>  40.0000 Fuel
+>  40.0000 Empty Canister
+
+# Packaged Alumina Solution
+@ Packager
+< 120.0000 Packaged Alumina Solution
+> 120.0000 Alumina Solution
+> 120.0000 Empty Canister
+
+# Packaged Liquid Biofuel
+@ Packager
+<  40.0000 Packaged Liquid Biofuel
+>  40.0000 Liquid Biofuel
+>  40.0000 Empty Canister
+
+# Packaged Oil
+@ Packager
+<  30.0000 Packaged Oil
+>  30.0000 Crude Oil
+>  30.0000 Empty Canister
+
+# Packaged Nitric Acid
+@ Packager
+<  30.0000 Packaged Nitric Acid
+>  30.0000 Nitric Acid
+>  30.0000 Empty Fluid Tank
+
+# Packaged Nitrogen Gas
+@ Packager
+<  60.0000 Packaged Nitrogen Gas
+> 240.0000 Nitrogen Gas
+>  60.0000 Empty Fluid Tank
+
+# Packaged Heavy Oil Residue
+@ Packager
+<  30.0000 Packaged Heavy Oil Residue
+>  30.0000 Heavy Oil Residue
+>  30.0000 Empty Canister
+
+# Packaged Sulfuric Acid
+@ Packager
+<  40.0000 Packaged Sulfuric Acid
+>  40.0000 Sulfuric Acid
+>  40.0000 Empty Canister
+
+# Packaged Turbofuel
+@ Packager
+<  20.0000 Packaged Turbofuel
+>  20.0000 Turbofuel
+>  20.0000 Empty Canister
+
+# Packaged Water
+@ Packager
+<  60.0000 Packaged Water
+>  60.0000 Water
+>  60.0000 Empty Canister
+
+# Unpackage Alumina Solution
+@ Packager
+< 120.0000 Alumina Solution
+< 120.0000 Empty Canister
+> 120.0000 Packaged Alumina Solution
+
+# Unpackage Liquid Biofuel
+@ Packager
+<  60.0000 Liquid Biofuel
+<  60.0000 Empty Canister
+>  60.0000 Packaged Liquid Biofuel
+
+# Unpackage Fuel
+@ Packager
+<  60.0000 Fuel
+<  60.0000 Empty Canister
+> 120.0000 Packaged Fuel
+
+# Unpackage Nitric Acid
+@ Packager
+<  20.0000 Nitric Acid
+<  20.0000 Empty Fluid Tank
+>  20.0000 Nitric Acid
+
+# Unpackage Nitrogen Gas
+@ Packager
+< 240.0000 Nitrogen Gas
+<  60.0000 Empty Fluid Tank
+>  60.0000 Packaged Nitrogen Gas
+
+# Unpackage Heavy Oil Residue
+@ Packager
+<  20.0000 Heavy Oil Residue
+<  20.0000 Empty Canister
+>  20.0000 Packaged Heavy Oil Residue
+
+# Unpackage Oil
+@ Packager
+<  60.0000 Crude Oil
+<  60.0000 Empty Canister
+>  60.0000 Packaged Oil
+
+# Unpackage Sulfuric Acid
+@ Packager
+<  60.0000 Sulfuric Acid
+<  60.0000 Empty Canister
+>  60.0000 Packaged Sulfuric Acid
+
+# Unpackage Turbofuel
+@ Packager
+<  20.0000 Turbofuel
+<  20.0000 Empty Canister
+>  20.0000 Packaged Turbofuel
+
+# Unpackage Water
+@ Packager
+< 120.0000 Water
+< 120.0000 Empty Canister
+> 120.0000 Packaged Water
+
+# Turbofuel
+@ Refinery
+<  18.7500 Turbofuel
+>  22.5000 Fuel
+>  15.0000 Compacted Coal
+
+# Alumina Solution
+@ Refinery
+< 120.0000 Alumina Soluton
+<  50.0000 Silica
+> 120.0000 Bauxite
+> 180.0000 Water
+
+# Alumina Scrap
+@ Refinery
+< 360.0000 Alumina Scrap
+< 120.0000 Water
+> 240.0000 Alumina Solution
+> 120.0000 Coal
+
+# Liquid Biofuel
+@ Refinery
+<  60.0000 Liquid Biofuel
+>  90.0000 Solid Biofuel
+>  45.0000 Water
+
+# Fuel
+@ Refinery
+<  40.0000 Fuel
+<  30.0000 Polymer Resin
+>  60.0000 Crude Oil
+
+# Petroleum Coke
+@ Refinery
+< 120.0000 Petroleum Coke
+>  40.0000 Heavy Oil Residue
+
+# Plastic
+@ Refinery
+<  10.0000 Heavy Oil Residue
+<  20.0000 Plastic
+>  30.0000 Crude Oil
+
+# Residual Fuel
+@ Refinery
+<  40.0000 Fuel
+>  60.0000 Heavy Oil Residue
+
+# Residual Plastic
+@ Refinery
+<  20.0000 Plastic
+>  60.0000 Polymer Resin
+>  20.0000 Water
+
+# Residual Rubber
+@ Refinery
+<  20.0000 Rubber
+>  40.0000 Polymer Resin
+>  40.0000 Water
+
+# Rubber
+@ Refinery
+<  20.0000 Rubber
+<  20.0000 Heavy Oil Residue
+>  30.0000 Crude Oil
+
+# Sulfuric Acid
+@ Refinery
+<  50.0000 Sulfuric Acid
+>  50.0000 Sulfur
+>  50.0000 Water
+
+# Water Extractor
+@ Water Extractor
+< 120.0000 Water
+
+# Caterium Ingot
+@ Smelter
+<  15.0000 Caterium Ingot
+>  45.0000 Caterium Ore
+
+# Copper Ingot
+@ Smelter
+<  30.0000 Copper Ingot
+>  30.0000 Copper Ore
+
+# Iron Ingot
+@ Smelter
+<  30.0000 Iron Ingot
+>  30.0000 Iron Ore
+
+# Plutonium Pellet
+@ Particle Accelerator
+<  30.0000 Plutonium Pellet
+>  25.0000 Uranium Waste
+> 100.0000 Non-fissile Uranium
+
+# Nuclear Pasta
+@ Particle Accelerator
+<   0.5000 Nuclear Pasta
+>   0.5000 Pressure Conversion Cube
+> 100.0000 Copper Powder
+
+# Aluminum Ingot
+@ Foundry
+<  60.0000 Aluminum Ingot
+>  75.0000 Silica
+>  90.0000 Aluminum Scrap
+
+# Steel Ingot
+@ Foundary
+<  45.0000 Steel Ingot
+>  45.0000 Iron Ore
+>  45.0000 Coal
+
