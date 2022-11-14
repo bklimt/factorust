@@ -1,4 +1,3 @@
-
 #[derive(thiserror::Error, Debug, Clone)]
 pub enum Error {
     #[error("invalid argument: {0}")]

@@ -1,4 +1,3 @@
-
 use crate::error::Error;
 
 #[derive(Debug)]
@@ -17,13 +16,16 @@ impl Ingredient {
         let (amount_part, part) = s.split_at(i);
         let amount = match amount_part.parse::<f32>() {
             Ok(f) => f,
-            Err(error) => return Err(Error::InvalidArgument(
-                format!("invalid number {:?}: {:?}", amount_part, error))),
+            Err(error) => {
+                return Err(Error::InvalidArgument(format!(
+                    "invalid number {:?}: {:?}",
+                    amount_part, error
+                )))
+            }
         };
-        Ok(Ingredient{
-            amount: amount,
+        Ok(Ingredient {
+            amount,
             part: String::from(part.trim()),
         })
     }
 }
-

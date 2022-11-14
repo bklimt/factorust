@@ -1,4 +1,3 @@
-
 use crate::error::Error;
 use crate::ingredient::Ingredient;
 
@@ -51,7 +50,7 @@ pub struct RecipeManager {
 
 impl RecipeManager {
     pub fn new() -> RecipeManager {
-        RecipeManager{
+        RecipeManager {
             recipes: Vec::new(),
         }
     }
@@ -61,9 +60,14 @@ impl RecipeManager {
 
         let file = match File::open(path) {
             Ok(file) => file,
-            Err(error) => return Err(Error::InvalidArgument(format!("unable to open file {:?}: {:?}", path, error))),
+            Err(error) => {
+                return Err(Error::InvalidArgument(format!(
+                    "unable to open file {:?}: {:?}",
+                    path, error
+                )))
+            }
         };
-    
+
         let mut r = BufReader::new(file);
         let mut recipe = Recipe::new();
         loop {
@@ -71,7 +75,7 @@ impl RecipeManager {
             let n = r.read_line(&mut line).unwrap();
             let trimmed = line.trim();
             // println!("line: {:?}", trimmed);
-    
+
             if trimmed == "" {
                 if recipe.inputs.len() > 0 || recipe.outputs.len() > 0 {
                     recipe.ensure_named();
@@ -79,20 +83,20 @@ impl RecipeManager {
                 if recipe.building == "" {
                     recipe.building = building.clone();
                 }
-    
+
                 if recipe.name != "" {
                     // println!("recipe: {:?}", recipe);
                     // recipe.print();
                     self.recipes.push(recipe);
                 }
                 recipe = Recipe::new();
-    
+
                 if n == 0 {
                     break;
                 }
                 continue;
             }
-    
+
             let kind = trimmed.chars().nth(0).unwrap();
             match kind {
                 '#' => recipe.name = String::from(trimmed[1..].trim()),
@@ -104,15 +108,19 @@ impl RecipeManager {
                     };
                     let ingredient = match Ingredient::parse(text) {
                         Ok(ingredient) => ingredient,
-                        Err(error) => return Err(Error::InvalidArgument(
-                            format!("unable to parse ingredient {:?}: {:?}", text, error))),
+                        Err(error) => {
+                            return Err(Error::InvalidArgument(format!(
+                                "unable to parse ingredient {:?}: {:?}",
+                                text, error
+                            )))
+                        }
                     };
                     if kind == '<' || (kind != '>' && recipe.outputs.len() == 0) {
                         recipe.outputs.push(ingredient);
                     } else {
                         recipe.inputs.push(ingredient);
                     }
-                },
+                }
             };
         }
         Ok(())

@@ -1,4 +1,3 @@
-
 use crate::recipe::RecipeManager;
 
 use std::env::args;
@@ -15,7 +14,7 @@ fn main() {
     match recipes.load(&path, default_building) {
         Ok(_) => (),
         Err(error) => panic!("{:?}", error),
-    }; 
+    };
 
     recipes.print();
 }
