@@ -1,6 +1,7 @@
 use crate::error::Error;
-use crate::ingredient::Ingredient;
+use crate::part::{Part, State};
 
+use std::collections::HashMap;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 
@@ -8,8 +9,8 @@ use std::io::{BufRead, BufReader};
 pub struct Recipe {
     pub name: String,
     pub building: String,
-    pub outputs: Vec<Ingredient>,
-    pub inputs: Vec<Ingredient>,
+    pub outputs: HashMap<String, f32>,
+    pub inputs: HashMap<String, f32>,
 }
 
 impl Recipe {
@@ -17,42 +18,67 @@ impl Recipe {
         Recipe {
             name: String::new(),
             building: String::new(),
-            outputs: Vec::new(),
-            inputs: Vec::new(),
+            outputs: HashMap::new(),
+            inputs: HashMap::new(),
         }
     }
 
     pub fn print(&self) {
         println!("# {}", self.name);
         println!("@ {}", self.building);
-        for ingredient in self.outputs.iter() {
-            println!("< {:>8.4} {}", ingredient.amount, ingredient.part);
+        for (part, amount) in self.outputs.iter() {
+            println!("< {:>8.4} {}", amount, part);
         }
-        for ingredient in self.inputs.iter() {
-            println!("> {:>8.4} {}", ingredient.amount, ingredient.part);
+        for (part, amount) in self.inputs.iter() {
+            println!("> {:>8.4} {}", amount, part);
         }
         println!("");
     }
 
-    fn ensure_named(&mut self) {
+    fn ensure_named(&mut self) -> Result<(), Error> {
         if self.name != "" {
-            return;
+            return Ok(());
         }
-        if self.outputs.len() > 0 {
-            self.name = self.outputs[0].part.clone();
+        if self.outputs.len() != 1 {
+            return Err(Error::InvalidArgument(String::from("no name for recipe")));
         }
+        for (part, _) in self.outputs.iter() {
+            self.name = part.clone();
+        }
+        Ok(())
     }
 }
 
 pub struct RecipeManager {
-    pub recipes: Vec<Recipe>,
+    pub recipes: HashMap<String, Recipe>,
+    pub parts: HashMap<String, Part>,
 }
 
 impl RecipeManager {
     pub fn new() -> RecipeManager {
         RecipeManager {
-            recipes: Vec::new(),
+            recipes: HashMap::new(),
+            parts: HashMap::new(),
         }
+    }
+
+    fn parse_ingredient(s: &str) -> Result<(String, f32), Error> {
+        let s = s.trim();
+        let i = match s.find(' ') {
+            Some(i) => i,
+            None => return Err(Error::InvalidArgument(String::from("malformed ingredient"))),
+        };
+        let (amount_part, part) = s.split_at(i);
+        let amount = match amount_part.parse::<f32>() {
+            Ok(f) => f,
+            Err(error) => {
+                return Err(Error::InvalidArgument(format!(
+                    "invalid number {:?}: {:?}",
+                    amount_part, error
+                )))
+            }
+        };
+        Ok((String::from(part.trim()), amount))
     }
 
     pub fn load(&mut self, path: &str, default_building: Option<String>) -> Result<(), Error> {
@@ -78,16 +104,21 @@ impl RecipeManager {
 
             if trimmed == "" {
                 if recipe.inputs.len() > 0 || recipe.outputs.len() > 0 {
-                    recipe.ensure_named();
+                    recipe.ensure_named()?;
                 }
                 if recipe.building == "" {
                     recipe.building = building.clone();
                 }
 
                 if recipe.name != "" {
-                    // println!("recipe: {:?}", recipe);
-                    // recipe.print();
-                    self.recipes.push(recipe);
+                    // TODO(klimt): Verify it doesn't exist already.
+                    if self.recipes.contains_key(&recipe.name) {
+                        return Err(Error::InvalidArgument(format!(
+                            "duplicate recipes named {:?}",
+                            &recipe.name
+                        )));
+                    }
+                    self.recipes.insert(recipe.name.clone(), recipe);
                 }
                 recipe = Recipe::new();
 
@@ -106,8 +137,8 @@ impl RecipeManager {
                         '<' | '>' => trimmed[1..].trim(),
                         _ => trimmed,
                     };
-                    let ingredient = match Ingredient::parse(text) {
-                        Ok(ingredient) => ingredient,
+                    let (part, amount) = match Self::parse_ingredient(text) {
+                        Ok((part, amount)) => (part, amount),
                         Err(error) => {
                             return Err(Error::InvalidArgument(format!(
                                 "unable to parse ingredient {:?}: {:?}",
@@ -116,19 +147,59 @@ impl RecipeManager {
                         }
                     };
                     if kind == '<' || (kind != '>' && recipe.outputs.len() == 0) {
-                        recipe.outputs.push(ingredient);
+                        recipe.outputs.insert(part, amount);
                     } else {
-                        recipe.inputs.push(ingredient);
+                        recipe.inputs.insert(part, amount);
                     }
                 }
             };
         }
+        self.derive_parts();
         Ok(())
     }
 
+    fn derive_parts(&mut self) {
+        for (_, recipe) in self.recipes.iter() {
+            for (name, _amount) in recipe.inputs.iter() {
+                if !self.parts.contains_key(name) {
+                    let mut part = Part::new();
+                    part.name = name.clone();
+                    self.parts.insert(name.clone(), part);
+                }
+            }
+            for (name, _amount) in recipe.outputs.iter() {
+                if !self.parts.contains_key(name) {
+                    let mut part = Part::new();
+                    part.name = name.clone();
+                    self.parts.insert(name.clone(), part);
+                }
+                self.parts.get_mut(name).unwrap().atomic = false;
+            }
+            if recipe.building == "Packager" && recipe.inputs.len() == 2 {
+                if recipe.inputs.contains_key("Empty Canister") {
+                    for (name, _) in recipe.inputs.iter() {
+                        if name != "Empty Canister" {
+                            self.parts.get_mut(name).unwrap().state = State::Liquid;
+                        }
+                    }
+                }
+                if recipe.inputs.contains_key("Empty Fluid Tank") {
+                    for (name, _) in recipe.inputs.iter() {
+                        if name != "Empty Fluid Tank" {
+                            self.parts.get_mut(name).unwrap().state = State::Gas;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     pub fn print(&self) {
-        for recipe in self.recipes.iter() {
+        for (_, recipe) in self.recipes.iter() {
             recipe.print();
+        }
+        for (_, part) in self.parts.iter() {
+            part.print();
         }
     }
 }

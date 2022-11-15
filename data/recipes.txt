@@ -35,7 +35,7 @@
 # Fine Black Powder
 @ Assembler
 <  15.0000 Black Powder
->   7.5000 Sulfer
+>   7.5000 Sulfur
 >   3.7500 Compacted Coal
 
 # Radio Connection Unit
@@ -113,7 +113,7 @@
 # Steel Screw
 @ Constructor
 < 260.0000 Screw
->   5.0000 Steal Beam
+>   5.0000 Steel Beam
 
 # Solid Steel Ingot
 @ Foundry
@@ -374,13 +374,13 @@
 # Turbo Heavy Fuel
 @ Refinery
 <  30.0000 Turbofuel
->  37.5000 Heacy Oil Residue
+>  37.5000 Heavy Oil Residue
 >  30.0000 Compacted Coal
 
 # Classic Battery
 @ Manufacturer
 <  30.0000 Battery
->  45.0000 Sulfer
+>  45.0000 Sulfur
 >  52.5000 Alclad Aluminum Sheet
 >  60.0000 Plastic
 >  90.0000 Wire
@@ -410,6 +410,12 @@
 < 240.0000 Alumina Solution
 > 200.0000 Bauxite
 > 200.0000 Water
+
+# Alclad Aluminum Sheet
+@ Assembler
+<  30.0000 Alclad Aluminum Sheet
+>  30.0000 Aluminum Ingot
+>  10.0000 Copper Ingot
 
 # Alclad Casing
 @ Assembler
@@ -596,7 +602,7 @@
 # Reinforced Iron Plate
 @ Assembler
 <   5.0000 Reinforced Iron Plate
->  30.0000 Steel
+>  30.0000 Iron Plate
 >  60.0000 Screw
 
 # Modular Frame
@@ -1193,4 +1199,10 @@
 <  45.0000 Steel Ingot
 >  45.0000 Iron Ore
 >  45.0000 Coal
+
+# Uranium Waste
+@ Nuclear Power Plant
+<  10.0000 Uranium Waste
+>   0.2000 Uranium Fuel Rod
+> 300.0000 Water
 

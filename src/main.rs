@@ -3,7 +3,8 @@ use crate::recipe::RecipeManager;
 use std::env::args;
 
 mod error;
-mod ingredient;
+mod inventory;
+mod part;
 mod recipe;
 
 fn main() {
