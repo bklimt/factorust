@@ -1,4 +1,5 @@
 use crate::error::Error;
+use crate::inventory::Inventory;
 use crate::part::{Part, State};
 
 use std::collections::HashMap;
@@ -9,8 +10,8 @@ use std::io::{BufRead, BufReader};
 pub struct Recipe {
     pub name: String,
     pub building: String,
-    pub outputs: HashMap<String, f32>,
-    pub inputs: HashMap<String, f32>,
+    pub outputs: HashMap<String, f64>,
+    pub inputs: HashMap<String, f64>,
 }
 
 impl Recipe {
@@ -62,14 +63,14 @@ impl RecipeManager {
         }
     }
 
-    fn parse_ingredient(s: &str) -> Result<(String, f32), Error> {
+    fn parse_ingredient(s: &str) -> Result<(String, f64), Error> {
         let s = s.trim();
         let i = match s.find(' ') {
             Some(i) => i,
             None => return Err(Error::InvalidArgument(String::from("malformed ingredient"))),
         };
         let (amount_part, part) = s.split_at(i);
-        let amount = match amount_part.parse::<f32>() {
+        let amount = match amount_part.parse::<f64>() {
             Ok(f) => f,
             Err(error) => {
                 return Err(Error::InvalidArgument(format!(
@@ -192,6 +193,17 @@ impl RecipeManager {
                 }
             }
         }
+    }
+
+    pub fn is_atomic(&self, inventory: &Inventory) -> bool {
+        for (name, _) in inventory.parts() {
+            if let Some(part) = self.parts.get(name) {
+                if !part.atomic {
+                    return false;
+                }
+            }
+        }
+        true
     }
 
     pub fn print(&self) {
