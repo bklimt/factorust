@@ -264,12 +264,13 @@ impl RecipeManager {
         true
     }
 
-    pub fn print(&self) {
-        println!("Parts:\n");
+    pub fn print_parts(&self) {
         for (_, part) in self.parts.iter() {
             part.print();
         }
-        println!("\nRecipes:\n");
+    }
+
+    pub fn print_recipes(&self) {
         for (_, name) in self.sorted_recipes.iter() {
             let recipe = self.recipes.get(name).expect("missing recipe");
             recipe.print();
