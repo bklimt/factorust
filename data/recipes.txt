@@ -1,3 +1,47 @@
+# Water Extractor
+@ Water Extractor
+< 120.0000 Water
+
+# Oil Extractor
+@ Oil Extractor
+< 120.0000 Crude Oil
+
+# Resource Well
+@ Resource Well
+< 420.0000 Nitrogen Gas
+
+# Coal
+@ Miner Mk. 3
+< 240.0000 Coal
+
+# Iron Ore
+@ Miner Mk. 3
+< 240.0000 Iron Ore
+
+# Copper Ore
+@ Miner Mk. 3
+< 240.0000 Copper Ore
+
+# Limestone
+@ Miner Mk. 3
+< 240.0000 Limestone
+
+# Caterium Ore
+@ Miner Mk. 3
+< 240.0000 Caterium Ore
+
+# Sulfur
+@ Miner Mk. 3
+< 240.0000 Sulfur
+
+# Bauxite
+@ Miner Mk. 3
+< 240.0000 Bauxite
+
+# Uranium
+@ Miner Mk. 3
+< 240.0000 Uranium
+
 # Copper Alloy Ingot
 @ Foundry
 < 100.0000 Copper Ingot
@@ -1156,18 +1200,6 @@
 <  50.0000 Sulfuric Acid
 >  50.0000 Sulfur
 >  50.0000 Water
-
-# Water Extractor
-@ Water Extractor
-< 120.0000 Water
-
-# Oil Extractor
-@ Oil Extractor
-< 120.0000 Crude Oil
-
-# Resource Well
-@ Resource Well
-< 420.0000 Nitrogen Gas
 
 # Caterium Ingot
 @ Smelter

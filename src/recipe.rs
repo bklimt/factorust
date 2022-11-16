@@ -293,6 +293,15 @@ impl RecipeManager {
         results: &mut Vec<Plan>,
         depth: i32,
     ) {
+        // This is a hack, until we can filter better.
+        if results.len() > 0 {
+            return;
+        }
+
+        if depth > 50 {
+            return;
+        }
+
         // Check if we've seen this inventory before.
         for prev_inv in seen.iter() {
             if prev_inv.is_subset(inventory) {
@@ -302,10 +311,12 @@ impl RecipeManager {
         let mut new_seen = seen.clone();
         new_seen.push(inventory);
 
+        /*
         for _ in 0..depth {
             print!("  ");
         }
         println!("{:?}", inventory);
+        */
         if self.is_atomic(inventory) {
             results.push(plan.clone());
             return;

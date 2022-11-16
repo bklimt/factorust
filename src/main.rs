@@ -25,6 +25,9 @@ struct Args {
 
     #[arg(long)]
     design: Option<String>,
+
+    #[arg(long)]
+    amount: Option<f64>,
 }
 
 fn main() {
@@ -46,7 +49,9 @@ fn main() {
 
     if let Some(output) = args.design {
         let mut inventory = Inventory::new();
-        inventory.parts_mut().insert(output.clone(), 1.0);
+        inventory
+            .parts_mut()
+            .insert(output.clone(), args.amount.unwrap_or(1.0));
 
         let results = recipes.search(&inventory);
 
