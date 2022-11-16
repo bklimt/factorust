@@ -1161,6 +1161,14 @@
 @ Water Extractor
 < 120.0000 Water
 
+# Oil Extractor
+@ Oil Extractor
+< 120.0000 Crude Oil
+
+# Resource Well
+@ Resource Well
+< 420.0000 Nitrogen Gas
+
 # Caterium Ingot
 @ Smelter
 <  15.0000 Caterium Ingot

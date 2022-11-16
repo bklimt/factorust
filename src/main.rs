@@ -1,3 +1,4 @@
+use crate::inventory::Inventory;
 use crate::recipe::RecipeManager;
 
 use std::env::args;
@@ -18,4 +19,20 @@ fn main() {
     };
 
     recipes.print();
+    println!("");
+
+    let mut inventory = Inventory::new();
+    inventory
+        .parts_mut()
+        .insert(String::from("Heavy Modular Frame"), 1.0);
+
+    let results = recipes.search(&inventory);
+
+    for plan in results.iter() {
+        println!("Plan: ");
+        for (amount, recipe) in plan.steps().iter() {
+            println!("  {} {}", amount, recipe);
+        }
+        println!("");
+    }
 }

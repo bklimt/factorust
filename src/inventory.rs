@@ -1,8 +1,9 @@
-use std::collections::{BTreeMap, HashSet};
+use std::collections::BTreeMap;
 use std::hash::{Hash, Hasher};
 
 use crate::recipe::Recipe;
 
+#[derive(Debug)]
 pub struct Inventory {
     parts: BTreeMap<String, f64>,
 }
@@ -17,8 +18,28 @@ impl Hash for Inventory {
     }
 }
 
+impl PartialEq for Inventory {
+    fn eq(&self, other: &Self) -> bool {
+        if self.parts.len() != other.parts.len() {
+            return false;
+        }
+        for (name, amount) in self.parts.iter() {
+            if let Some(other_amount) = other.parts.get(name) {
+                if other_amount != amount {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+        true
+    }
+}
+
+impl Eq for Inventory {}
+
 impl Inventory {
-    pub fn new() -> Inventory {
+    pub fn new() -> Self {
         Inventory {
             parts: BTreeMap::new(),
         }
@@ -28,14 +49,40 @@ impl Inventory {
         &self.parts
     }
 
+    pub fn parts_mut(&mut self) -> &mut BTreeMap<String, f64> {
+        &mut self.parts
+    }
+
+    pub fn is_subset(&self, other: &Self) -> bool {
+        for (name, amount) in self.parts.iter() {
+            if let Some(other_amount) = other.parts.get(name) {
+                if other_amount < amount {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+        true
+    }
+
     // Applies the given recipe to see if this inventroy could have been
     // created from a previous inventory. Ignores extra outputs, so long
     // as the recipe contributed something.
-    pub fn apply_backwards(&mut self, recipe: &Recipe) -> Option<Inventory> {
+    pub fn apply_backwards(&self, recipe: &Recipe) -> Option<(f64, Inventory)> {
         // How many times do we need to apply the recipe?
         let mut times = 0.0f64;
         for (part, want) in self.parts.iter() {
             if let Some(have) = recipe.outputs.get(part) {
+                /*
+                println!(
+                    "Recipe {} can produce {} {} with {} instances.",
+                    recipe.name,
+                    *want,
+                    part,
+                    (*want / *have)
+                );
+                */
                 times = times.max(*want / *have);
             }
         }
@@ -62,7 +109,7 @@ impl Inventory {
             new_inv.parts.insert(part.clone(), amount);
         }
 
-        Some(new_inv)
+        Some((times, new_inv))
     }
 }
 
@@ -74,7 +121,7 @@ mod tests {
 
     #[test]
     pub fn test_apply_backwards_constructor() {
-        let mut inventory = Inventory {
+        let inventory = Inventory {
             parts: BTreeMap::from([
                 (String::from("ingot"), 60.0),
                 (String::from("other"), 100.0),
@@ -86,9 +133,11 @@ mod tests {
             building: String::from("Constructor"),
             inputs: HashMap::from([(String::from("ore"), 30.0)]),
             outputs: HashMap::from([(String::from("ingot"), 30.0)]),
+            score: 0,
         };
 
-        let actual = inventory.apply_backwards(&recipe).expect("expected answer");
+        let (times, actual) = inventory.apply_backwards(&recipe).expect("expected answer");
+        assert_eq!(times, 2.0);
         assert_eq!(actual.parts.len(), 2);
         assert_eq!(actual.parts["ore"], 60.0);
         assert_eq!(actual.parts["other"], 100.0);
@@ -96,7 +145,7 @@ mod tests {
 
     #[test]
     pub fn test_apply_backwards_refinery() {
-        let mut inventory = Inventory {
+        let inventory = Inventory {
             parts: BTreeMap::from([
                 (String::from("solution"), 50.0),
                 (String::from("scrap"), 1.0),
@@ -114,9 +163,11 @@ mod tests {
                 (String::from("solution"), 10.0),
                 (String::from("scrap"), 100.0),
             ]),
+            score: 0,
         };
 
-        let actual = inventory.apply_backwards(&recipe).expect("expected answer");
+        let (times, actual) = inventory.apply_backwards(&recipe).expect("expected answer");
+        assert_eq!(times, 5.0);
         assert_eq!(actual.parts.len(), 2);
         assert_eq!(actual.parts["bauxite"], 100.0);
         assert_eq!(actual.parts["water"], 600.0);

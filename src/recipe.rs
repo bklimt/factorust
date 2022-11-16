@@ -2,7 +2,7 @@ use crate::error::Error;
 use crate::inventory::Inventory;
 use crate::part::{Part, State};
 
-use std::collections::HashMap;
+use std::collections::{BTreeMap, HashMap};
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 
@@ -12,6 +12,7 @@ pub struct Recipe {
     pub building: String,
     pub outputs: HashMap<String, f64>,
     pub inputs: HashMap<String, f64>,
+    pub score: i32,
 }
 
 impl Recipe {
@@ -21,11 +22,12 @@ impl Recipe {
             building: String::new(),
             outputs: HashMap::new(),
             inputs: HashMap::new(),
+            score: 1000,
         }
     }
 
     pub fn print(&self) {
-        println!("# {}", self.name);
+        println!("# {} ({})", self.name, self.score);
         println!("@ {}", self.building);
         for (part, amount) in self.outputs.iter() {
             println!("< {:>8.4} {}", amount, part);
@@ -50,16 +52,29 @@ impl Recipe {
     }
 }
 
+#[derive(Clone)]
+pub struct Plan {
+    steps: Vec<(f64, String)>,
+}
+
+impl Plan {
+    pub fn steps(&self) -> &Vec<(f64, String)> {
+        &self.steps
+    }
+}
+
 pub struct RecipeManager {
     pub recipes: HashMap<String, Recipe>,
-    pub parts: HashMap<String, Part>,
+    pub parts: BTreeMap<String, Part>,
+    pub sorted_recipes: BTreeMap<(i32, String), String>,
 }
 
 impl RecipeManager {
-    pub fn new() -> RecipeManager {
+    pub fn new() -> Self {
         RecipeManager {
             recipes: HashMap::new(),
-            parts: HashMap::new(),
+            parts: BTreeMap::new(),
+            sorted_recipes: BTreeMap::new(),
         }
     }
 
@@ -160,6 +175,7 @@ impl RecipeManager {
     }
 
     fn derive_parts(&mut self) {
+        // Find the atomic items and the liquids/gasses.
         for (_, recipe) in self.recipes.iter() {
             for (name, _amount) in recipe.inputs.iter() {
                 if !self.parts.contains_key(name) {
@@ -193,6 +209,48 @@ impl RecipeManager {
                 }
             }
         }
+
+        // Compute scores.
+
+        // Mark the atomics.
+        for (_, part) in self.parts.iter_mut() {
+            if part.atomic {
+                part.score = 0;
+            }
+        }
+
+        // Derive scores for parts.
+        loop {
+            let mut change = false;
+            for (_, recipe) in self.recipes.iter() {
+                let mut max_input = 0;
+                for (name, _) in recipe.inputs.iter() {
+                    max_input = max_input.max(self.parts[name].score);
+                }
+                max_input += 1;
+                for (name, _) in recipe.outputs.iter() {
+                    let part = self.parts.get_mut(name).unwrap();
+                    if max_input < part.score {
+                        part.score = max_input;
+                        change = true;
+                    }
+                }
+            }
+            if !change {
+                break;
+            }
+        }
+
+        // Derive scores for recipes.
+        for (_, recipe) in self.recipes.iter_mut() {
+            let mut max_input = 0;
+            for (name, _) in recipe.inputs.iter() {
+                max_input = max_input.max(self.parts[name].score + 1);
+            }
+            recipe.score = max_input;
+            self.sorted_recipes
+                .insert((recipe.score, recipe.name.clone()), recipe.name.clone());
+        }
     }
 
     pub fn is_atomic(&self, inventory: &Inventory) -> bool {
@@ -207,11 +265,61 @@ impl RecipeManager {
     }
 
     pub fn print(&self) {
-        for (_, recipe) in self.recipes.iter() {
-            recipe.print();
-        }
+        println!("Parts:\n");
         for (_, part) in self.parts.iter() {
             part.print();
+        }
+        println!("\nRecipes:\n");
+        for (_, name) in self.sorted_recipes.iter() {
+            let recipe = self.recipes.get(name).expect("missing recipe");
+            recipe.print();
+        }
+    }
+
+    pub fn search(&self, inventory: &Inventory) -> Vec<Plan> {
+        let plan = Plan { steps: Vec::new() };
+        let seen: Vec<&Inventory> = Vec::new();
+        let mut results: Vec<Plan> = Vec::new();
+        self.search_internal(&inventory, &plan, &seen, &mut results, 0);
+        results
+    }
+
+    pub fn search_internal(
+        &self,
+        inventory: &Inventory,
+        plan: &Plan,
+        seen: &Vec<&Inventory>,
+        results: &mut Vec<Plan>,
+        depth: i32,
+    ) {
+        // Check if we've seen this inventory before.
+        for prev_inv in seen.iter() {
+            if prev_inv.is_subset(inventory) {
+                return;
+            }
+        }
+        let mut new_seen = seen.clone();
+        new_seen.push(inventory);
+
+        for _ in 0..depth {
+            print!("  ");
+        }
+        println!("{:?}", inventory);
+        if self.is_atomic(inventory) {
+            results.push(plan.clone());
+            return;
+        }
+        for (_, recipe_name) in self.sorted_recipes.iter() {
+            let recipe = self.recipes.get(recipe_name).expect("missing recipe");
+            if let Some((times, new_inv)) = inventory.apply_backwards(recipe) {
+                for _ in 0..depth {
+                    print!("  ");
+                }
+                println!("{}: Applying {} {} times.", depth, recipe.name, times);
+                let mut new_plan = plan.clone();
+                new_plan.steps.push((times, recipe.name.clone()));
+                self.search_internal(&new_inv, &new_plan, &new_seen, results, depth + 1);
+            }
         }
     }
 }
