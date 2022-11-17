@@ -1,3 +1,5 @@
+use std::collections::HashSet;
+
 use crate::inventory::Inventory;
 use crate::recipe::RecipeManager;
 
@@ -28,6 +30,9 @@ struct Args {
 
     #[arg(long)]
     amount: Option<f64>,
+
+    #[arg(long)]
+    exclude_recipes: Option<String>,
 }
 
 fn main() {
@@ -47,20 +52,23 @@ fn main() {
         recipes.print_recipes();
     }
 
+    let mut exclude_recipes: HashSet<String> = HashSet::new();
+    if let Some(s) = args.exclude_recipes {
+        for p in s.split(",") {
+            exclude_recipes.insert(String::from(p));
+        }
+    }
+
     if let Some(output) = args.design {
         let mut inventory = Inventory::new();
         inventory
             .parts_mut()
             .insert(output.clone(), args.amount.unwrap_or(1.0));
 
-        let results = recipes.search(&inventory);
+        let results = recipes.search(&inventory, &exclude_recipes);
 
         for plan in results.iter() {
-            println!("Plan: ");
-            for (amount, recipe) in plan.steps().iter() {
-                println!("  {} {}", amount, recipe);
-            }
-            println!("");
+            recipes.print_plan(plan, true);
         }
     }
 }

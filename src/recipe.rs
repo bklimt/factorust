@@ -2,7 +2,7 @@ use crate::error::Error;
 use crate::inventory::Inventory;
 use crate::part::{Part, State};
 
-use std::collections::{BTreeMap, HashMap};
+use std::collections::{BTreeMap, HashMap, HashSet};
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 
@@ -55,12 +55,6 @@ impl Recipe {
 #[derive(Clone)]
 pub struct Plan {
     steps: Vec<(f64, String)>,
-}
-
-impl Plan {
-    pub fn steps(&self) -> &Vec<(f64, String)> {
-        &self.steps
-    }
 }
 
 pub struct RecipeManager {
@@ -277,11 +271,77 @@ impl RecipeManager {
         }
     }
 
-    pub fn search(&self, inventory: &Inventory) -> Vec<Plan> {
+    pub fn print_plan(&self, plan: &Plan, include_amounts: bool) {
+        let mut factories: HashMap<String, f64> = HashMap::new();
+        let mut ingredients: HashMap<String, f64> = HashMap::new();
+        let mut seen_edges: HashSet<String> = HashSet::new();
+
+        for (times, step) in plan.steps.iter() {
+            factories.insert(
+                step.clone(),
+                match factories.get(step) {
+                    Some(value) => value + times,
+                    None => *times,
+                },
+            );
+
+            let recipe = self.recipes.get(step).unwrap();
+            for (output, amount) in recipe.outputs.iter() {
+                ingredients.insert(
+                    output.clone(),
+                    match ingredients.get(output) {
+                        Some(value) => value + (times * amount),
+                        None => times * amount,
+                    },
+                );
+            }
+        }
+
+        println!("digraph {{");
+        for (_times, step) in plan.steps.iter() {
+            let factory_amount = factories.get(step).unwrap();
+            let recipe = self.recipes.get(step).unwrap();
+            let step_desc = if include_amounts {
+                format!(
+                    "\"{}\\n{}\\n{:.4}\"",
+                    recipe.building, recipe.name, factory_amount
+                )
+            } else {
+                format!("\"{}\\n{}\"", recipe.building, recipe.name)
+            };
+            for (input, _amount) in recipe.inputs.iter() {
+                let ingredient_amount = ingredients.get(input).unwrap_or(&0.0);
+                let input_desc = if include_amounts {
+                    format!("\"{}\\n{:.4}\"", input, ingredient_amount)
+                } else {
+                    format!("\"{}\"", input)
+                };
+                let edge = format!("  {} -> {}", input_desc, step_desc);
+                if seen_edges.insert(edge.clone()) {
+                    println!("{}", edge);
+                }
+            }
+            for (output, _amount) in recipe.outputs.iter() {
+                let ingredient_amount = ingredients.get(output).unwrap();
+                let output_desc = if include_amounts {
+                    format!("\"{}\\n{:.4}\"", output, ingredient_amount)
+                } else {
+                    format!("\"{}\"", output)
+                };
+                let edge = format!("  {} -> {}", step_desc, output_desc);
+                if seen_edges.insert(edge.clone()) {
+                    println!("{}", edge);
+                }
+            }
+        }
+        println!("}}");
+    }
+
+    pub fn search(&self, inventory: &Inventory, ignore_recipes: &HashSet<String>) -> Vec<Plan> {
         let plan = Plan { steps: Vec::new() };
         let seen: Vec<&Inventory> = Vec::new();
         let mut results: Vec<Plan> = Vec::new();
-        self.search_internal(&inventory, &plan, &seen, &mut results, 0);
+        self.search_internal(&inventory, &plan, ignore_recipes, &seen, &mut results, 0);
         results
     }
 
@@ -289,6 +349,7 @@ impl RecipeManager {
         &self,
         inventory: &Inventory,
         plan: &Plan,
+        ignore_recipes: &HashSet<String>,
         seen: &Vec<&Inventory>,
         results: &mut Vec<Plan>,
         depth: i32,
@@ -298,7 +359,7 @@ impl RecipeManager {
             return;
         }
 
-        if depth > 50 {
+        if depth > 100 {
             return;
         }
 
@@ -321,16 +382,32 @@ impl RecipeManager {
             results.push(plan.clone());
             return;
         }
+
+        // TODO(klimt): Start with the most expensive part and use the cheapest recipe.
+
         for (_, recipe_name) in self.sorted_recipes.iter() {
+            if ignore_recipes.contains(recipe_name.as_str()) {
+                continue;
+            }
+
             let recipe = self.recipes.get(recipe_name).expect("missing recipe");
             if let Some((times, new_inv)) = inventory.apply_backwards(recipe) {
+                /*
                 for _ in 0..depth {
                     print!("  ");
                 }
                 println!("{}: Applying {} {} times.", depth, recipe.name, times);
+                */
                 let mut new_plan = plan.clone();
                 new_plan.steps.push((times, recipe.name.clone()));
-                self.search_internal(&new_inv, &new_plan, &new_seen, results, depth + 1);
+                self.search_internal(
+                    &new_inv,
+                    &new_plan,
+                    ignore_recipes,
+                    &new_seen,
+                    results,
+                    depth + 1,
+                );
             }
         }
     }
