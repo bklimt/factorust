@@ -1141,14 +1141,14 @@
 
 # Alumina Solution
 @ Refinery
-< 120.0000 Alumina Soluton
+< 120.0000 Alumina Solution
 <  50.0000 Silica
 > 120.0000 Bauxite
 > 180.0000 Water
 
-# Alumina Scrap
+# Aluminum Scrap
 @ Refinery
-< 360.0000 Alumina Scrap
+< 360.0000 Aluminum Scrap
 < 120.0000 Water
 > 240.0000 Alumina Solution
 > 120.0000 Coal
